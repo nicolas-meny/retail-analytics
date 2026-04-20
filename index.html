@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retail Analytics : Piloter la croissance par la donnée</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:            #ffffff;
+      --surface:       #f8f8f8;
+      --surface-img:   #f2f2f2;
+      --border:        rgba(0,0,0,0.08);
+      --border-md:     rgba(0,0,0,0.12);
+      --text:          #111111;
+      --muted:         #555555;
+      --subtle:        #999999;
+      --accent:        #4a7fa5;
+      --accent-bg:     rgba(74,127,165,0.07);
+      --accent-border: rgba(74,127,165,0.2);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Hero et sections alignés sur la même largeur */
+    .col-main {
+      max-width: 1640px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 6rem 0 2rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 48px;
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 2rem;
+      max-width: 760px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #444444;
+      margin-bottom: 0.85rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .hero-result {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 1.75rem 0 0;
+      line-height: 1.6;
+      font-weight: 300;
+      padding: 1.25rem 1.5rem;
+      border-left: 2px solid var(--border-md);
+      background: var(--surface);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .hero-result .result-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-result .result-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      color: var(--text);
+      font-weight: 400;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-result strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .hero-question {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--text);
+      margin: 2rem 0 2.5rem;
+      padding: 1.1rem 1.5rem;
+      border-left: 1.5px solid var(--accent);
+      background: var(--accent-bg);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .nav-steps { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+    .nav-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border: 0.5px solid var(--border-md);
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 400;
+      text-decoration: none;
+      color: var(--muted);
+      background: var(--surface);
+      transition: color 0.2s, border-color 0.2s;
+      letter-spacing: 0.03em;
+    }
+
+    .nav-step:hover { color: var(--text); border-color: var(--accent); }
+    .nav-step .num { font-size: 11px; font-weight: 500; color: var(--accent); }
+
+    .hero-label {
+      margin-top: 1.75rem;
+      margin-bottom: 0.5rem;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #111111;
+    }
+
+    .hero-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .hero-list li {
+      font-size: 15px;
+      color: var(--muted);
+      padding-left: 1.25rem;
+      position: relative;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .hero-list li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--subtle);
+    }
+
+    .hero-list li strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .plan-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .plan-step {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.6rem 1rem;
+      border-left: 2px solid var(--accent-border);
+      transition: border-color 0.2s, color 0.2s;
+      line-height: 1.5;
+    }
+
+    .plan-step:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .plan-step strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      scroll-margin-top: 2rem;
+      margin: 2.5rem 0;
+      background: var(--surface);
+      border: 0.5px solid var(--border-md);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .s-text { padding: 2.5rem 3rem; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .section-header h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    .tool-badge {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-bg);
+      padding: 3px 9px;
+      border-radius: 3px;
+      border: 0.5px solid var(--accent-border);
+    }
+
+    .section-intro {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .section-intro strong { color: var(--text); font-weight: 500; }
+
+    .levier-callout {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text);
+      margin-top: 1.25rem;
+      padding: 1rem 1.5rem;
+      background: var(--accent-bg);
+      border-left: 1.5px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* ── IMAGES ── */
+    .s-images {
+      background: var(--surface-img);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      padding: 2rem;
+    }
+
+    .img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .img-block { display: flex; flex-direction: column; gap: 0.85rem; }
+
+    .img-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .img-block img {
+      width: 100%;
+      height: 480px;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      border-radius: 4px;
+      cursor: zoom-in;
+      transition: opacity 0.2s;
+    }
+
+    .img-block img:hover { opacity: 0.88; }
+
+    .img-hint {
+      font-size: 11px;
+      color: var(--subtle);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── BULLETS ── */
+    .s-bullets {
+      padding: 2rem 3rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .bullets-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .bullets-grid > div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .bullets li {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+      padding-left: 1.1rem;
+      position: relative;
+      font-weight: 300;
+    }
+
+    .bullets li::before { content: "–"; position: absolute; left: 0; color: var(--subtle); }
+
+    .graph-intro {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+    .bullets li strong { color: var(--text); font-weight: 500; }
+
+    /* ── TABLEAU ── */
+    .s-table { padding: 2rem 3rem 2.5rem; }
+
+    .subsection-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      border: 0.5px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    th {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--subtle);
+      padding: 12px 16px;
+      border-bottom: 0.5px solid var(--border);
+      text-align: left;
+      background: var(--surface-img);
+    }
+
+    td {
+      padding: 13px 16px;
+      border-bottom: 0.5px solid var(--border);
+      color: var(--text);
+      font-weight: 300;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .badge-ok {
+      display: inline-flex;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 500;
+      color: #3d7a1e;
+      background: rgba(111,168,74,0.12);
+      padding: 3px 10px;
+      border-radius: 99px;
+      border: 0.5px solid rgba(111,168,74,0.3);
+    }
+
+    .result-note {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 1.5rem;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    .result-note strong { color: var(--text); font-weight: 500; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.75rem;
+      font-size: 28px;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .lightbox-close:hover { color: #fff; }
+
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 30px; }
+      .nav-steps { flex-direction: column; }
+      .col-main { padding: 0 1rem; }
+      .s-text, .s-bullets, .s-table { padding: 1.75rem 1.5rem; }
+      .s-images { padding: 1.5rem 1rem; }
+      .img-grid, .bullets-grid { grid-template-columns: 1fr; }
+      .img-block img { height: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- HERO + SECTIONS dans la même colonne -->
+  <div class="col-main">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-tag">Portfolio &nbsp;·&nbsp; Data Analytics</div>
+      <h1>Retail Analytics :<br>Piloter la croissance par la donnée</h1>
+
+      <p class="hero-label"><strong style="color:#000000;">Le Contexte Business</strong></p>
+      <p>La Responsable de Marché du segment Snacks d'une grande enseigne de distribution observe une stagnation de ses revenus. Bien que stable, ce segment n'avait jusqu'alors jamais fait l'objet d'une analyse approfondie :<br><em>aucune segmentation client n'était établie et les décisions d'activation produit étaient prises sans connaissance des comportements d'achat réels.</em></p>
+
+      <p class="hero-label"><strong style="color:#000000;">La Problématique</strong></p>
+      <p><strong style="color:#000000;">Comment l'exploitation des données transactionnelles permet-elle d'ajuster l'offre commerciale et d'activer des leviers de croissance jusqu'alors ignorés ?</strong></p>
+
+      <p class="hero-label"><strong style="color:#000000;">Ma Solution</strong></p>
+      <p>Pour répondre à cet enjeu, j'ai structuré une démarche end-to-end autour de trois piliers techniques et analytiques :</p>
+
+      <div class="plan-steps">
+        <a class="plan-step" href="#infra"><strong>I. Data Engineering · Snowflake</strong> — architecture Medallion & modélisation en étoile</a>
+        <a class="plan-step" href="#analyse"><strong>II. Data Analytics · Power BI</strong> — segmentation client & recommandations produits</a>
+        <a class="plan-step" href="#impact"><strong>III. Analyse Statistique · Python</strong> — Store Matching & A/B test</a>
+      </div>
+
+      <div class="hero-result">
+        <span class="result-label">Résultat</span>
+        <span class="result-number">+8,5% de croissance du CA</span>
+        mesuré sur le magasin test · niveau de confiance statistique de <strong>99%</strong>
+      </div>
+    </div>
+
+    <!-- SECTION I -->
+    <div class="section" id="infra">
+      <div class="s-text">
+        <div class="section-header">
+          <h2>I. Infrastructure Data</h2>
+          <span class="tool-badge">Snowflake</span>
+        </div>
+        <p class="section-intro"><strong>Objectif :</strong> Centraliser et fiabiliser les données transactionnelles brutes pour garantir une source de vérité indiscutable en amont de toute analyse.</p>
+        <br>
+        <p class="section-intro">En entreprise, les données de ventes, clients et produits sont souvent dispersées dans des systèmes hétérogènes (ERP, CRM, fichiers CSV...). Sans centralisation préalable, une analyse cohérente et fiable à l'échelle de l'organisation est impossible.</p>
+        <div class="levier-callout"><strong>Méthode :</strong> Architecture Medallion sur Snowflake (Bronze → Silver → Gold) — ingestion brute, nettoyage et enrichissement des données, puis modélisation en schéma en étoile pour l'exploration BI.</div>
+      </div>
+      <div class="s-images">
+        <div class="img-grid">
+          <div class="img-block">
+            <span class="img-label">Architecture Medallion</span>
+            <img src="docs/images/architecture.png" alt="Architecture Medallion" class="zoomable" />
+            <span class="img-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="img-block">
+            <span class="img-label">Schéma en étoile</span>
+            <img src="docs/images/erd.png" alt="Schéma en étoile" class="zoomable" />
+            <span class="img-hint">Cliquer pour agrandir</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION II -->
+    <div class="section" id="analyse">
+      <div class="s-text">
+        <div class="section-header">
+          <h2>II. Analyse & Recommandations</h2>
+          <span class="tool-badge">Power BI — S2 2018</span>
+        </div>
+        <p class="section-intro"><strong>Objectif :</strong> Identifier les leviers de croissance sur le segment Snacks à partir des données du S2 2018.</p>
+        <br>
+        <p class="section-intro">Le rayon Snacks est un segment d'achat impulsif — faible fréquence d'achat (~2 transactions/semestre/client) et flux client stable : l'acquisition et la rétention ne sont pas des leviers actionnables.</p>
+        <p class="section-intro"><strong>Le seul levier : optimiser le panier moyen</strong> — en augmentant le volume d'articles achetés ou la valeur unitaire par article.</p>
+        <div class="levier-callout"><strong>Méthode :</strong> Identification des segments moteurs et de leurs modes de consommation (volume vs valeur), puis sélection des produits à activer sur la base des affinités par segment et du positionnement tarifaire.</div>
+      </div>
+      <div class="s-images">
+        <div class="img-grid">
+          <div class="img-block">
+            <span class="img-label">Segmentation client</span>
+            <img src="docs/images/segmentation.png" alt="Segmentation client" class="zoomable" />
+            <span class="img-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="img-block">
+            <span class="img-label">Affinités produits & positionnement tarifaire</span>
+            <img src="docs/images/affinites_produits.png" alt="Affinités produits" class="zoomable" />
+            <span class="img-hint">Cliquer pour agrandir</span>
+          </div>
+        </div>
+      </div>
+      <div class="s-bullets">
+        <div class="bullets-grid">
+          <div>
+            <p class="graph-intro"><em>Identifier les segments moteurs et comprendre leur mode de consommation pour définir le bon levier d'activation.</em></p>
+            <ul class="bullets">
+              <li><strong>Families &amp; Older Singles concentrent 75% du volume</strong> — ce sont les profils prioritaires à activer</li>
+              <li><strong>Families</strong> · fort volume (1.95 art./panier) · prix unitaire faible ($3.7)<br>→ levier : <strong>bundling</strong></li>
+              <li><strong>Older Singles</strong> · panier restreint · prix unitaire élevé ($3.9)<br>→ levier : <strong>premiumisation</strong></li>
+              <li>Segments secondaires · comportements dispersés · appétence premium observable</li>
+            </ul>
+          </div>
+          <div>
+            <p class="graph-intro"><em>Croiser le score d'affinité (Lift) avec le prix unitaire et le volume de ventes pour sélectionner les produits à activer par segment.</em></p>
+            <ul class="bullets">
+              <li><strong>Families →</strong> Red Rock Deli 165g s'impose : prix plus élevé ($3.00), meilleures ventes et positionnement plus premium que Smiths</li>
+              <li><strong>Older Singles →</strong> forte appétence pour Kettle, la marque la plus premium — le format 175g ($5.40) privilégié : plus cher et 2ème produit le plus vendu malgré son positionnement haut de gamme</li>
+              <li><strong>Pringles 134g →</strong> affinité transversale sur l'ensemble des segments · produit le plus vendu (~25K) — levier mass market incontournable</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="s-table">
+        <div class="subsection-title">Recommandations</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Segment</th><th>Levier</th><th>Produit</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Families</td><td>Volume</td><td>Red Rock Deli 165g</td><td>Pack de 3 en promotion</td></tr>
+              <tr><td>Older Singles</td><td>Valeur</td><td>Kettle 175g</td><td>Pack de 2 — mise en avant premium</td></tr>
+              <tr><td>Mass Market</td><td>Transversal</td><td>Pringles 134g</td><td>Pack de 3 — haute visibilité</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION III -->
+    <div class="section" id="impact">
+      <div class="s-text">
+        <div class="section-header">
+          <h2>III. Évaluation d'Impact</h2>
+          <span class="tool-badge">Python — Fév à Avr 2019</span>
+        </div>
+        <p class="section-intro"><strong>Objectif :</strong> Mesurer l'impact des recommandations définies en section II, déployées sur 3 magasins test entre février et avril 2019.</p>
+        <br>
+        <div class="levier-callout"><strong>Méthode :</strong> Sélection des magasins témoins par profil similaire et corrélation statistique sur l'historique des ventes, puis mesure du lift de CA et validation statistique des résultats.</div>
+      </div>
+      <div class="s-images">
+        <div class="img-grid">
+          <div class="img-block">
+            <span class="img-label">Sélection des magasins témoins</span>
+            <img src="docs/images/selection_mag_temoin.png" alt="Sélection des magasins témoins" class="zoomable" />
+            <span class="img-hint">Cliquer pour agrandir</span>
+          </div>
+          <div class="img-block">
+            <span class="img-label">Mesure de l'impact</span>
+            <img src="docs/images/visu_impact.png" alt="Mesure de l'impact" class="zoomable" />
+            <span class="img-hint">Cliquer pour agrandir</span>
+          </div>
+        </div>
+      </div>
+      <div class="s-bullets">
+        <div class="bullets-grid">
+          <div>
+            <p class="graph-intro"><em>Identifier pour chaque magasin test un magasin contrôle au profil comparable, afin d'isoler l'effet de l'activation des variations naturelles du marché.</em></p>
+            <ul class="bullets">
+              <li><strong>3 magasins test aux profils volontairement distincts</strong> (volume de transactions × panier moyen) — permet de valider la stratégie sur des contextes magasins variés</li>
+              <li><strong>Filtrage par profil</strong> — chaque magasin test est associé à son propre bassin de contrôle de magasins au profil similaire</li>
+              <li><strong>Corrélation de Pearson</strong> sur l'historique des ventes — au sein de chaque bassin, le magasin dont la saisonnalité est la plus proche du magasin test est retenu comme témoin</li>
+            </ul>
+          </div>
+          <div>
+            <p class="graph-intro"><em>Comparer l'évolution du CA du magasin test avec son contrôle sur la période d'activation pour quantifier le lift généré.</em></p>
+            <ul class="bullets">
+              <li>Avant le test, les deux courbes évoluent de façon similaire — <strong>l'appariement est validé</strong></li>
+              <li>Durant le test (fév–avr), le magasin 88 surperforme nettement son contrôle, avec un pic à <strong>+15% en mars</strong> — l'activation produit un effet mesurable</li>
+              <li>À l'issue du test, les courbes convergent — l'effet est localisé sur la période d'activation, ce qui renforce la fiabilité du résultat</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="s-table">
+        <div class="subsection-title">Résultats</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Magasin Test</th><th>Lift</th><th>P-Value</th><th>Confiance</th><th>Statut</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Store 77</td><td>+20.98%</td><td>0.098</td><td>90.2%</td><td>Tendance forte</td></tr>
+              <tr><td>Store 86</td><td>+10.72%</td><td>0.241</td><td>75.9%</td><td>Non significatif</td></tr>
+              <tr><td>Store 88</td><td>+8.53%</td><td>0.006</td><td>99.4%</td><td><span class="badge-ok">Validé &amp; Scalable</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="result-note"><strong>Le Store 88 est le résultat clé — lift de +8,5% validé statistiquement (p-value : 0,006 · 99% de confiance). La stratégie est scalable sur des magasins au profil similaire.</strong></p>
+        <p class="result-note"><strong>Les Stores 77 et 86 affichent des résultats non conclusifs.</strong> Le Store 77, plus petit en volume de transactions, présente une variance naturellement plus élevée qui fragilise la significativité statistique. Le Store 86 suggère des facteurs locaux non neutralisés. <strong>Une investigation approfondie est nécessaire avant tout déploiement.</strong></p>
+      </div>
+    </div>
+
+    <div style="height: 5rem;"></div>
+
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    document.querySelectorAll('.zoomable').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    lightbox.addEventListener('click', closeLightbox);
+    lightboxClose.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>

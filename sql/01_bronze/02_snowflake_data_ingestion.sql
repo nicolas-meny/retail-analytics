@@ -1,0 +1,41 @@
+-- ----------------------------------------------------------
+-- 2. INGESTION DES DONNÉES BRUTES
+-- ----------------------------------------------------------
+
+USE DATABASE RETAIL_ANALYTICS_QUANTIUM;
+
+CREATE OR REPLACE FILE FORMAT BRONZE.CSV_FORMAT
+    TYPE = 'CSV'
+    FIELD_DELIMITER = ','
+    SKIP_HEADER = 1
+    FIELD_OPTIONALLY_ENCLOSED_BY = '"'
+    EMPTY_FIELD_AS_NULL = TRUE;
+
+-- Table Transactions (Source: QVI_transaction_data.csv)
+CREATE OR REPLACE TABLE BRONZE.TRANSACTIONS (
+    DATE             NUMBER,   -- Format Excel serial (ex: 43231)
+    STORE_NBR        NUMBER,
+    LYLTY_CARD_NBR   NUMBER,
+    TXN_ID           NUMBER,
+    PROD_NBR         NUMBER,
+    PROD_NAME        VARCHAR(100),
+    PROD_QTY         NUMBER,
+    TOT_SALES        DECIMAL(10,2) -- Précision financière
+);
+
+-- Table Customers (Source: QVI_purchase_behaviour.csv)
+CREATE OR REPLACE TABLE BRONZE.CUSTOMERS (
+    LYLTY_CARD_NBR   NUMBER,
+    LIFESTAGE        VARCHAR(50),
+    PREMIUM_CUSTOMER VARCHAR(50)
+);
+
+-- Chargement des Transactions
+COPY INTO RETAIL_ANALYTICS_QUANTIUM.BRONZE.TRANSACTIONS
+FROM @RETAIL_ANALYTICS_QUANTIUM.BRONZE.UPLOAD_STAGE/QVI_transaction_data.csv
+FILE_FORMAT = (FORMAT_NAME = RETAIL_ANALYTICS_QUANTIUM.BRONZE.CSV_FORMAT);
+
+-- Chargement des Clients
+COPY INTO RETAIL_ANALYTICS_QUANTIUM.BRONZE.CUSTOMERS
+FROM @RETAIL_ANALYTICS_QUANTIUM.BRONZE.UPLOAD_STAGE/QVI_purchase_behaviour.csv
+FILE_FORMAT = (FORMAT_NAME = RETAIL_ANALYTICS_QUANTIUM.BRONZE.CSV_FORMAT);

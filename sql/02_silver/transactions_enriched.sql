@@ -1,0 +1,40 @@
+-- ==========================================================
+-- LAYER   : SILVER
+-- OBJECT  : VIEW TRANSACTIONS_ENRICHED
+-- ==========================================================
+
+USE DATABASE RETAIL_ANALYTICS_QUANTIUM;
+
+CREATE OR REPLACE VIEW SILVER.TRANSACTIONS_ENRICHED AS
+
+SELECT DISTINCT
+    *,
+
+    CAST(SALES_AMNT / NULLIF(SALES_QTY, 0) AS DECIMAL(10, 2)) AS UNIT_PRICE,
+
+    -- extarction de la taille du paquet
+    CAST(REGEXP_SUBSTR(PROD_NAME, '[0-9]+') AS NUMBER) AS PROD_SIZE,
+    
+    -- extraction de la marque
+    CASE 
+        WHEN SPLIT_PART(PROD_NAME, ' ', 1) IN ('RED', 'RRD') THEN 'RED ROCK DELI'
+        WHEN SPLIT_PART(PROD_NAME, ' ', 1) IN ('SMITH', 'SMITHS') THEN 'SMITHS'
+        WHEN SPLIT_PART(PROD_NAME, ' ', 1) IN ('DORITO', 'DORITOS') THEN 'DORITOS'
+        WHEN SPLIT_PART(PROD_NAME, ' ', 1) IN ('WW', 'WOOLWORTHS') THEN 'WOOLWORTHS'
+        WHEN SPLIT_PART(PROD_NAME, ' ', 1) IN ('SNBTS', 'SUNBITES') THEN 'SUNBITES'
+        WHEN SPLIT_PART(PROD_NAME, ' ', 1) IN ('INFZNS', 'INFUZIONS') THEN 'INFUZIONS'
+        WHEN SPLIT_PART(PROD_NAME, ' ', 1) IN ('NCC', 'NATURAL') THEN 'NATURAL CHIP CO'
+        WHEN SPLIT_PART(PROD_NAME, ' ', 1) IN ('GRNWVES', 'GRAIN') THEN 'GRAIN WAVES'
+        ELSE SPLIT_PART(PROD_NAME, ' ', 1) 
+    END AS PROD_BRAND,
+
+    -- extraction du numéro du mois fiscal
+    CASE 
+        WHEN MONTH(TXN_DATE) >= 7 THEN MONTH(TXN_DATE) - 6 
+        ELSE MONTH(TXN_DATE) + 6 
+    END AS TXN_MONTH_NUMBER,
+
+    -- extraction du nom du mois
+    MONTHNAME(TXN_DATE) AS TXN_MONTH_NAME
+    
+FROM SILVER.TRANSACTIONS_CLEAN;
