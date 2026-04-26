@@ -6,10 +6,7 @@
 
 ## About
 
-Currently training in Data & AI, I am preparing for a **data analyst role bridging data and business teams** — where data translates into decisions.
-
-This project is based on the **Quantium Data Analytics Job Simulation on Forage** — a retail analytics case covering customer segmentation, product recommendations and statistical impact measurement. 
-I extended the scope by building a complete data infrastructure on **Snowflake**, simulating a modern data environment and covering the full analytical chain from raw data to business recommendations.
+End-to-end data analytics project based on **Quantium Data Analytics Job Simulation on Forage** — a retail analytics case covering customer segmentation, product recommendations and statistical impact measurement. 
 
 **Result: +8.5% revenue lift** on the test store, validated at **99.4% statistical confidence**.
 
@@ -67,5 +64,5 @@ I extended the scope by building a complete data infrastructure on **Snowflake**
 
 | Document | Description | Link |
 |---|---|---|
-| Project Presentation | Condensed 6-slide deck — segmentation, product strategy & A/B test results | [View](#) |
-| Full Analysis Report | Detailed analytical report — methodology, insights & recommendations | [View](#) |
+| Project Presentation | Condensed 6-slide deck — segmentation, product strategy & A/B test results | [View](https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQDeW8gBocf-RaTxcWcKns0xATvRKfhSkk6dBom42If9lZI?e=h7HgZY) |
+| Full Analysis Report | Detailed analytical report — methodology, insights & recommendations | [View](https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQDlieCb8OYuR6biQ-cr5m38AW8h_DdW17KNNRdCyksnZd4?e=HzRXqH) |
