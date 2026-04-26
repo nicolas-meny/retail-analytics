@@ -6,7 +6,7 @@
 
 ## About
 
-End-to-end data analytics project based on **Quantium Data Analytics Job Simulation on Forage** — a retail analytics case covering customer segmentation, product recommendations and statistical impact measurement. 
+**End-to-end data analytics project** based on **Quantium Data Analytics Job Simulation on Forage** — a retail analytics case covering customer segmentation, product recommendations and statistical impact measurement. 
 
 **Result: +8.5% revenue lift** on the test store, validated at **99.4% statistical confidence**.
 
@@ -14,11 +14,11 @@ End-to-end data analytics project based on **Quantium Data Analytics Job Simulat
 
 ## Approach
 
-**1. Data Engineering · Snowflake + SQL** — raw CSV ingestion, cleaning and enrichment via a Medallion Architecture (Bronze → Silver → Gold), star schema modelling optimised for BI querying. All transformations are written in SQL and hosted on Snowflake.
+**1. Data Engineering · Snowflake + SQL** — raw CSV ingestion, cleaning and enrichment via a **Medallion Architecture (Bronze → Silver → Gold)**, **star schema modelling** optimised for BI querying. All transformations are written in SQL and hosted on Snowflake.
 
 **2. Data Analytics · Power BI** — customer segment analysis across consumption patterns (volume vs. unit price), product affinity scoring via Lift, and definition of three targeted activation recommendations by segment.
 
-**3. Statistical Evaluation · Python** — control store selection via profile filtering and Pearson correlation, A/B test and revenue lift measurement across 3 test stores.
+**3. Statistical Evaluation · Python** — control store selection via profile filtering and Pearson correlation, **A/B test** and revenue lift measurement across 3 test stores.
 
 ---
 
@@ -28,8 +28,6 @@ End-to-end data analytics project based on **Quantium Data Analytics Job Simulat
 |---|---|
 | Validated Revenue Lift | **+8.5%** (Store 88) |
 | Statistical Confidence | **99.4%** (p = 0.006) |
-| Priority SKUs Activated | **3** (by segment) |
-| Primary Segments Targeted | Families (34%) + Older Singles (40%) = **75% of volume** |
 
 ---
 
