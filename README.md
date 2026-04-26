@@ -1,50 +1,70 @@
-# Retail Analytics : Piloter la croissance par la donnée
+# Retail Analytics — Data-Driven Growth Strategy
 
-📊 [Voir le portfolio](https://nicolas-meny.github.io/retail-analytics)
-
----
-
-## À propos
-
-En formation Data & IA, je me prépare à un poste de **data analyst au service des équipes métier** — là où la donnée se traduit en décision.
-
-Ce projet prend comme point de départ la mission proposée par **Quantium sur Forage** — un cas d'analyse retail couvrant la segmentation client, les recommandations produits et la validation statistique. J'ai choisi de le prolonger en construisant une infrastructure data complète sur **Snowflake**, afin de simuler un environnement data moderne et couvrir l'ensemble de la chaîne analytique.
-
-**Résultat : +8,5% de croissance du CA** observée sur le magasin test avec **99% de confiance statistique**.
+📊 [View Portfolio](https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQDeW8gBocf-RaTxcWcKns0xATvRKfhSkk6dBom42If9lZI?e=h7HgZY) · 📄 [Full Analysis Report](https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQDlieCb8OYuR6biQ-cr5m38AW8h_DdW17KNNRdCyksnZd4?e=HzRXqH)
 
 ---
 
-## Démarche
+## About
 
-**1. Data Engineering — Snowflake** — ingestion, nettoyage et enrichissement des données via une architecture Medallion (Bronze → Silver → Gold), modélisation en schéma en étoile pour l'exploration BI.
+Currently training in Data & AI, I am preparing for a **data analyst role bridging data and business teams** — where data translates into decisions.
 
-**2. Data Analytics — Power BI** — analyse des segments clients et de leurs modes de consommation (volume vs valeur), identification des affinités produits par score de Lift et définition de trois recommandations d'activation ciblées.
+This project is based on the **Quantium Data Analytics Job Simulation on Forage** — a retail analytics case covering customer segmentation, product recommendations and statistical impact measurement. I extended the scope by building a complete data infrastructure on **Snowflake**, simulating a modern data environment and covering the full analytical chain from raw data to business recommendations.
 
-**3. Analyse Statistique — Python** — sélection des magasins témoins par filtrage de profil et corrélation de Pearson, A/B test et mesure du lift de CA sur 3 magasins test.
+**Result: +8.5% revenue lift** on the test store, validated at **99.4% statistical confidence**.
 
 ---
 
-## Stack technique
+## Approach
 
-| Outil | Usage |
+**1. Data Engineering · Snowflake + SQL** — raw CSV ingestion, cleaning and enrichment via a Medallion Architecture (Bronze → Silver → Gold), star schema modelling optimised for BI querying. All transformations are written in SQL and hosted on Snowflake.
+
+**2. Data Analytics · Power BI** — customer segment analysis across consumption patterns (volume vs. unit price), product affinity scoring via Lift, and definition of three targeted activation recommendations by segment.
+
+**3. Statistical Evaluation · Python** — control store selection via profile filtering and Pearson correlation, A/B test and revenue lift measurement across 3 test stores.
+
+---
+
+## Key Results
+
+| Metric | Value |
 |---|---|
-| Snowflake | Ingestion, nettoyage et modélisation (Architecture Medallion) |
-| Power BI | Analyse comportementale par segment et affinités produits |
-| Python | Store Matching, A/B test et validation statistique |
-| SQL | Requêtes avancées, nettoyage et modélisation Gold |
+| Validated Revenue Lift | **+8.5%** (Store 88) |
+| Statistical Confidence | **99.4%** (p = 0.006) |
+| Priority SKUs Activated | **3** (by segment) |
+| Primary Segments Targeted | Families (34%) + Older Singles (40%) = **75% of volume** |
 
 ---
 
-## Structure du repo
+## Tech Stack
+
+| Tool | Usage |
+|---|---|
+| Snowflake | Data warehouse hosting the full Medallion Architecture |
+| SQL | All data transformations — ingestion, cleaning and Gold layer modelling |
+| Power BI | Behavioural analysis by segment and product affinity |
+| Python | Store Matching, A/B test and statistical validation |
+
+---
+
+## Repo Structure
 
 ```
 ├── README.md
-├── index.html              # Portfolio GitHub Pages
-├── data/                   # Données sources Quantium (transactions & clients)
-├── docs/images/            # Visuels du portfolio
-├── notebooks/              # Analyse Python (Store Matching & A/B test)
+├── index.html              # GitHub Pages portfolio
+├── data/                   # Quantium source data (transactions & customers)
+├── docs/                   # Data cleaning & feature engineering documentation (Excel)
+├── notebooks/              # Python analysis (Store Matching & A/B test)
 └── sql/
-    ├── 01_bronze/          # Ingestion brute
-    ├── 02_silver/          # Nettoyage & enrichissement
-    └── 03_gold/            # Modélisation (FACT_SALES, DIM_*)
+    ├── 01_bronze/          # Raw ingestion
+    ├── 02_silver/          # Cleaning & enrichment
+    └── 03_gold/            # Modelling (FACT_SALES, DIM_*)
 ```
+
+---
+
+## Reports
+
+| Document | Description | Link |
+|---|---|---|
+| Project Presentation | Condensed 6-slide deck — segmentation, product strategy & A/B test results | [View](#) |
+| Full Analysis Report | Detailed analytical report — methodology, insights & recommendations | [View](#) |
