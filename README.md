@@ -1,9 +1,12 @@
 # Retail Analytics — Data-Driven Growth Strategy
 
-📊 [View Portfolio](https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQDeW8gBocf-RaTxcWcKns0xATvRKfhSkk6dBom42If9lZI?e=h7HgZY) · 📄 [Full Analysis Report](https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQDlieCb8OYuR6biQ-cr5m38AW8h_DdW17KNNRdCyksnZd4?e=HzRXqH)
+<p align="center">
+  <a href="https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQAiXYSGYE5ISrtM0Fsn4d9VAWs47_SbmkFd4yXlWDk_CAc?e=Ke0y8G">
+    <img src="https://img.shields.io/badge/Project Showcase-0078D4?style=for-the-badge&logo=microsoftpowerpoint&logoColor=white" height="40" />
+  </a>
+</p>
 
 ---
-
 ## About
 
 **End-to-end data analytics project** based on **Quantium Data Analytics Job Simulation on Forage** — a retail analytics case covering customer segmentation, product recommendations and statistical impact measurement. 
@@ -13,6 +16,10 @@
 ---
 
 ## Approach
+
+<p align="center">
+  <img src="docs/architecture.jpeg" width="100%" />
+</p>
 
 **1. Data Engineering · Snowflake + SQL** — raw CSV ingestion, cleaning and enrichment via a **Medallion Architecture (Bronze → Silver → Gold)**, **star schema modelling** optimised for BI querying. All transformations are written in SQL and hosted on Snowflake.
 
@@ -58,9 +65,9 @@
 
 ---
 
-## Reports
+## Project Presentation
 
 | Document | Description | Link |
 |---|---|---|
-| Project Presentation | Condensed 6-slide deck — segmentation, product strategy & A/B test results | [View](https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQDeW8gBocf-RaTxcWcKns0xATvRKfhSkk6dBom42If9lZI?e=h7HgZY) |
+| Project Showcase | Condensed 6-slide deck — segmentation, product strategy & A/B test results | [View](https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQAiXYSGYE5ISrtM0Fsn4d9VAWs47_SbmkFd4yXlWDk_CAc?e=Ke0y8G) |
 | Full Analysis Report | Detailed analytical report — methodology, insights & recommendations | [View](https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQDlieCb8OYuR6biQ-cr5m38AW8h_DdW17KNNRdCyksnZd4?e=HzRXqH) |
