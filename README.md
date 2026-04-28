@@ -1,7 +1,7 @@
 # Retail Analytics — Data-Driven Growth Strategy
 
 <p align="center">
-  <a href="https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQAiXYSGYE5ISrtM0Fsn4d9VAWs47_SbmkFd4yXlWDk_CAc?e=Ke0y8G">
+  <a href="https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQBorWWxw51gSLXoWgeaDXg1AVBRrwlkzKVlgvwmIotqOFI?e=DzNm0T">
     <img src="https://img.shields.io/badge/Project Showcase-0078D4?style=for-the-badge&logo=microsoftpowerpoint&logoColor=white" height="40" />
   </a>
 </p>
@@ -69,5 +69,5 @@
 
 | Document | Description | Link |
 |---|---|---|
-| Project Showcase | Condensed 6-slide deck — segmentation, product strategy & A/B test results | [View](https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQAiXYSGYE5ISrtM0Fsn4d9VAWs47_SbmkFd4yXlWDk_CAc?e=Ke0y8G) |
+| Project Showcase | Condensed 6-slide deck — segmentation, product strategy & A/B test results | [View](https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQBorWWxw51gSLXoWgeaDXg1AVBRrwlkzKVlgvwmIotqOFI?e=DzNm0T) |
 | Full Analysis Report | Detailed analytical report — methodology, insights & recommendations | [View](https://poce-my.sharepoint.com/:b:/g/personal/nicolas_meny_edu_ece_fr/IQDlieCb8OYuR6biQ-cr5m38AW8h_DdW17KNNRdCyksnZd4?e=HzRXqH) |
